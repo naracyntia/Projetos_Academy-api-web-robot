@@ -1,0 +1,7 @@
+./vscode
+/logs/
+**.html
+**.xml
+./result
+logs/log.html
+.\result

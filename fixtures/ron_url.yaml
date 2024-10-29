@@ -1,0 +1,12 @@
+AMBIENTE:
+  URL: https://ron-bugado.qacoders.dev.br/api
+  
+  ENDPOINTS:
+    USER: user/
+
+
+AMBIENTE:
+  Url_web: https://automacao.qacoders.dev.br/
+  
+  ENDPOINTS:
+    LOGIN: login/

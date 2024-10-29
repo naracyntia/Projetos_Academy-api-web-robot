@@ -1,0 +1,19 @@
+{
+    "robot.language-server.python": "g:\\Meu Drive\\Qa.Coders Academy\\2024.1\\RobortFramework\\RonBugado\\resources\\copy_company.robot",
+    "robot.pythonpath": [
+      "C:/Users/Cyntia/AppData/Local/Programs/Python/Python312/Scripts/",
+      "C:/Users/Cyntia/AppData/Local/Programs/Microsoft VS Code/bin",
+      "C:/Users/Cyntia/.robotframework-ls"
+    ],
+    "robot.variables": {
+      "BROWSER": "Chrome",
+      "URL": "https://exemplo.com"
+    },
+    "robot.language-server.include": [
+      "tests/*.robot",
+      "tests/**/*.robot"
+    ],
+    "robot.run.outputdir": "results",
+    "robot.run.arguments": "--include smoke"
+  }
+  
