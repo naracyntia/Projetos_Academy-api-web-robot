@@ -1,8 +1,12 @@
 ./vscode
+.\result
+.result
+result\
+.vscode
 /logs/
 **.html
 **.xml
 ./result
 logs/log.html
-.\result
 .vscode
+
