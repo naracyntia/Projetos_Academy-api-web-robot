@@ -7,5 +7,5 @@ vscode
 /logs/
 **.html
 **.xml
-/results/
+/result/
 logs/log.html
