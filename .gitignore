@@ -5,3 +5,6 @@
 ./result
 logs/log.html
 .\result
+.result
+result\
+vscode
