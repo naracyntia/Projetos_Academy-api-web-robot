@@ -1,10 +1,11 @@
 ./vscode
-/logs/
-**.html
-**.xml
 ./result
-logs/log.html
 .\result
 .result
 result\
 vscode
+/logs/
+**.html
+**.xml
+/results/
+logs/log.html
