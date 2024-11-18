@@ -1,0 +1,71 @@
+name: Teste API e Web com Robot
+ 
+on: push
+ 
+jobs:
+   test:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: clone do projeto
+        uses: actions/checkout@v4
+        
+      - name: configuração do python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+ 
+      - name: Instalação de dependência
+        # run: echo Instalação das depedências do Projeto
+        run: |
+          pip install robotframework-seleniumlibrary
+          pip install robotframework
+          pip install robotframework-requests
+          
+ 
+      - name: rodando os testes
+        # run: echo Executando os testes de API do Robot
+        run: |
+          robot --name "API & Web Tests" --outputdir result/ tests/ 
+ 
+      - name: Salvando os resultados dos testes
+        # run: echo Salvando o Report dos Testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resultado-testes
+          path: result/
+
+   deploy:
+    name: configurar site
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+    - test
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: https://naracyntia.github.io/ronbugado-academy12.2-api-web-robot/report.html
+            
+        
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+  
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with: 
+          name: resultado-testes
+          path: result/
+  
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: result/
+  
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
