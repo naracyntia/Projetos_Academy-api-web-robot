@@ -1,7 +1,7 @@
 *** Settings ***
 Resource          ../../resources/web.resource
 Test Setup        Abrir navegador
-#Test Teardown     Fechar navegador
+Test Teardown     Fechar navegador
 
 *** Test Cases ***
 Cenário de Post: Cadastro de usuário

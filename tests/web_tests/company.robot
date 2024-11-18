@@ -3,7 +3,7 @@ Resource      ../../resources/company.resource
 Resource      ../../resources/web.resource
 
 Test Setup        Abrir navegador
-#Test Teardown     Fechar navegador
+Test Teardown     Fechar navegador
 
 *** Test Cases ***
 Cenário de Post: Cadastro de empresa
@@ -70,7 +70,7 @@ Cenário de GET: Editar empresa
     
 
          
-  #66fdeaa4eed30dc911c018e9
+  
 
 
 
