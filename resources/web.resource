@@ -18,7 +18,7 @@ Resource     ../pages/pages_web.resource
 
 
 Abrir navegador
-    Open Browser    browser=chrome
+    Open Browser    browser=headlesschrome
     Maximize Browser Window
 
 
