@@ -10,10 +10,10 @@ Library      libs/get_fake_person.py
 
 
 *** Variables ***
-${baseUrl}          https://ron-bugado.qacoders.dev.br/api
+${baseUrl}          https://api-the-originals.qacoders.dev.br/api
 ${id_user}          661c585d14ff021dc447c556
 ${MSG}              Endereço da companhia atualizado com sucesso! 
-${Url_web}          https://automacao.qacoders.dev.br/login  
+${Url_web}          https://the-originals.qacoders.dev.br/login  
 
 
 

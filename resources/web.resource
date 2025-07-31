@@ -8,6 +8,7 @@ Library      libs/get_fake_person.py
 
 Variables    ../fixtures/data.yaml
 Variables    ../fixtures/ron_url.yaml
+Variables    ../fixtures/thementalists_url.yaml
 
 Resource     keywords.resource
 Resource     users.resource
