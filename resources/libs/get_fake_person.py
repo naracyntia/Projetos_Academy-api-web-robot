@@ -26,7 +26,7 @@ def gerar_telefone_sem_formatacao():
 
 def get_fake_person():
     person = {
-        "name": limpar_ponto_nome(faker.name()),
+         "name": limpar_ponto_nome(faker.name()),
          "email": faker.email(),
          "cpf": limpar_cpf(faker.cpf()),
     }

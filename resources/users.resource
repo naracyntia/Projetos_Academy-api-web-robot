@@ -14,9 +14,9 @@ List Users
     RETURN                     ${resposta.json()}
 
 Criar usuário
-    ${person}      Get Fake Person
-    ${token}       Pegar Token
-    ${body}        Create User
+    ${person}       Get Fake Person
+    ${token}        Pegar Token
+    ${body}         Create User
        
     
 Count Users
@@ -43,6 +43,6 @@ Put Status
     RETURN          ${resposta.json()}
 
 Cadastro Sucesso
-    ${user_ID}     Create User
-    Get User       ${user_ID}
-    Delete User    id_user=${user_ID}
+    ${user_ID}      Create User
+    Get User        ${user_ID}
+    Delete User     id_user=${user_ID}

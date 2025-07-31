@@ -76,7 +76,7 @@ Create Company
     ...    serviceDescription=${Company}[descricao]
     ...    address=${address}
     
-    Log To Console     Criando empresa com dados: ${bodyCia}
+    Log To Console     Criando empresa com dados:   ${bodyCia}
     ${resposta}           POST On Session    alias=APISwagger    url=/company/?token=${token}      json=${bodyCia}
     RETURN    ${resposta.json()["newCompany"]["_id"]}
     log to Console          ${resposta.json()}
