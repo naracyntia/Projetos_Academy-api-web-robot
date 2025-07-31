@@ -10,17 +10,17 @@ Library      libs/get_fake_person.py
 
 
 *** Variables ***
-${baseUrl}          https://api-the-originals.qacoders.dev.br/api
+${baseUrl}          https://api-shogun.qacoders.dev.br/api/
 ${id_user}          661c585d14ff021dc447c556
 ${MSG}              Endereço da companhia atualizado com sucesso! 
-${Url_web}          https://the-originals.qacoders.dev.br/login  
+${Url_web}          https://shogun.qacoders.dev.br/login  
 
 
 
 
 *** Keywords ***
 Criar Sessao
-    ${headers}    Create Dictionary    accept=application/json    Content-Type=application/json    
+    ${headers}    Create Dictionary    accept=application/json    Content-Type=application/json         
     Create Session    alias=APISwagger    url=${baseUrl}    headers=${headers}    verify=true
 
 Pegar Token
@@ -29,7 +29,7 @@ Pegar Token
     ...    password=1234@Test
     Log    ${body}
     Criar Sessao
-    ${resposta}    POST On Session    alias=APISwagger    url=/login    json=${body}
+    ${resposta}    POST On Session    alias=APISwagger    url=login    json=${body}
     Status Should Be    200    ${resposta}
     RETURN                     ${resposta.json()["token"]}
 

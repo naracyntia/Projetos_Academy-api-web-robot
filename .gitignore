@@ -9,5 +9,5 @@ logs/log.html
 \result
 result
 /venv
-
+.venv/
 

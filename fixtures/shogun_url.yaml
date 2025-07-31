@@ -1,0 +1,12 @@
+AMBIENTE:
+  URL: https://api-shogun.qacoders.dev.br/api-docs/#/
+  
+  ENDPOINTS:
+    USER: user/
+
+
+AMBIENTE:
+  Url_web: https://shogun.qacoders.dev.br/login
+  
+  ENDPOINTS:
+    LOGIN: login/

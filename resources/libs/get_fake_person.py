@@ -2,6 +2,15 @@ from faker import Faker
 
 faker = Faker('pt_BR');
 
+
+def get_fake_person():
+    person = {
+         "name": limpar_ponto_nome(faker.name()),
+         "email": faker.email(),
+         "cpf": limpar_cpf(faker.cpf()),
+    }
+    return person
+
 # Remove pontos de uma string de nome.
 def limpar_ponto_nome(nome):
     # Remove apenas o ponto
@@ -23,15 +32,6 @@ def limpar_zipCode(zipCode):
 
 def gerar_telefone_sem_formatacao():
     return faker.msisdn()
-
-def get_fake_person():
-    person = {
-         "name": limpar_ponto_nome(faker.name()),
-         "email": faker.email(),
-         "cpf": limpar_cpf(faker.cpf()),
-    }
-    return person
-
 
 def get_fake_company():
     company = {
