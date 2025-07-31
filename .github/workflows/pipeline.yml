@@ -48,7 +48,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: https://naracyntia.github.io/ronbugado-academy12.2-api-web-robot/report.html
+      url: https://naracyntia.github.io/Projetos_Academy-api-web-robot/report.html
             
         
     steps:
