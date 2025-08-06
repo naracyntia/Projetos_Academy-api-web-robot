@@ -1,4 +1,5 @@
 from faker import Faker
+import random
 
 faker = Faker('pt_BR');
 
@@ -52,6 +53,22 @@ def get_fake_company():
     return company
 
 
+def get_fake_board():
+    nome_diretoria = [
+        "Administrativa", "Técnica", "Comercial", "Financeira", "Projetos",
+        "RH", "Operações", "Logística", "Marketing", "Jurídica",
+        "Estratégica", "Inovação", "Internacional", "Tecnologia",
+        "Suprimentos", "Qualidade", "Comunicação", "Expansão",
+        "Investimentos", "Sustentabilidade"
+    ]
+    letras = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3))
+    return f"{random.choice(nome_diretoria)} {letras}"
+
+
+
+
+
+
 #company = get_fake_company();
 # print(company["email"]);
 # print(company["cnpj"]);
@@ -62,3 +79,5 @@ def get_fake_company():
 # address = get_fake_address();
 # print(address["city"]);
 # print(address["zipCode"]);
+
+

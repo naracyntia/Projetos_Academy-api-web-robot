@@ -24,7 +24,7 @@ Abrir navegador
 
 
 Passo 1 - acessar a página de login Qa.Coders Academy
-    Go To      url=${Url_web} 
+    Go To      url=${env['ERPFront']} 
 
 
 Passo 2 – digitar e-mail

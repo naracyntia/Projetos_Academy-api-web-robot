@@ -1,38 +1,42 @@
 *** Settings ***
 Documentation        Arquivo das Bibliotecas
 
+
 Library      RequestsLibrary
 Library      String
 Library      Collections
 Library      OperatingSystem
 Library      libs/get_fake_person.py
+Library      ../tests/get_config.py
 
+
+Variables     ../fixtures/data.yaml
+Variables     ../fixtures/env.yaml     
 
 
 *** Variables ***
-${baseUrl}          https://api-shogun.qacoders.dev.br/api/
-${id_user}          661c585d14ff021dc447c556
-${MSG}              Endereço da companhia atualizado com sucesso! 
-${Url_web}          https://shogun.qacoders.dev.br/login  
-
-
+${id_user}           661c585d14ff021dc447c556
+${MSG}               Endereço da companhia atualizado com sucesso! 
+            
 
 
 *** Keywords ***
 Criar Sessao
-    ${headers}    Create Dictionary    accept=application/json    Content-Type=application/json         
-    Create Session    alias=APISwagger    url=${baseUrl}    headers=${headers}    verify=true
+    ${env}             get environment
+    ${headers}         Create Dictionary    accept=application/json    Content-Type=application/json         
+    Create Session     alias=APISwagger     url=${environments["${env}"]['Swagger']}      headers=${headers}    verify=true
 
 Pegar Token
     ${body}    Create Dictionary    
-    ...    mail=sysadmin@qacoders.com    
-    ...    password=1234@Test
+    ...    mail=${Login["USER"]}    
+    ...    password=${Login["PASSWORD"]}
     Log    ${body}
     Criar Sessao
-    ${resposta}    POST On Session    alias=APISwagger    url=login    json=${body}
-    Status Should Be    200    ${resposta}
+    ${resposta}                POST On Session    alias=APISwagger    url=login/    json=${body}   
+    Status Should Be           200         ${resposta}
+    Set Test Variable          ${Token}    ${resposta.json()["token"]}
     RETURN                     ${resposta.json()["token"]}
-
+    Log                        ${Token}         
 
 Create User
     ${person}      Get Fake Person
@@ -44,7 +48,7 @@ Create User
     ...    accessProfile=ADMIN
     ...    cpf=${person}[cpf]
     ...    confirmPassword=1234@Test
-    ${resposta}         POST On Session    alias=APISwagger    url=/user/?token=${token}    json=${body}
+    ${resposta}         POST On Session    alias=APISwagger    url=user/?token=${token}    json=${body}
     Status Should Be    201    ${resposta}
     RETURN                     ${resposta.json()["user"]["_id"]}
 
@@ -76,16 +80,25 @@ Create Company
     ...    serviceDescription=${Company}[descricao]
     ...    address=${address}
     
-    Log To Console     Criando empresa com dados:   ${bodyCia}
-    ${resposta}           POST On Session    alias=APISwagger    url=/company/?token=${token}      json=${bodyCia}
-    RETURN    ${resposta.json()["newCompany"]["_id"]}
-    log to Console          ${resposta.json()}
-    ${company_ID}    Set Test Variable    ${resposta.json()["newCompany"]["_id"]}
-    RETURN         ${company_ID}
+    # Log To Console      Criando empresa com dados:   ${bodyCia}
+    ${resposta}         POST On Session              alias=APISwagger    url=company/?token=${token}      json=${bodyCia}
+    RETURN              ${resposta.json()["newCompany"]["_id"]}
+    log to Console      ${resposta.json()}
+    ${company_ID}       Set Test Variable            ${resposta.json()["newCompany"]["_id"]}
+    RETURN              ${company_ID}
     
 
 
-
+Create Board
+    ${board}       Get Fake Board
+    ${token}       Pegar Token
+    ${body}        Create Dictionary
+    ...    boardName=${board}    
+    
+    ${resposta}         POST On Session    alias=APISwagger    url=board/?token=${token}    json=${body}
+    Status Should Be    201                ${resposta}
+    ${BOARD_ID}=        Set Variable       ${resposta.json()["newBoard"]["_id"]}
+    RETURN                                 ${resposta.json()["newBoard"]["_id"]}
 
 
 

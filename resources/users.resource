@@ -9,7 +9,7 @@ Resource         keywords.resource
 List Users
     [Documentation]     Retorna a listagem de usuários
     ${token}            Pegar Token
-    ${resposta}         GET On Session    alias=APISwagger    url=/user/?token=${token}
+    ${resposta}         GET On Session    alias=APISwagger    url=user/?token=${token}
     Status Should Be    200    ${resposta}
     RETURN                     ${resposta.json()}
 
