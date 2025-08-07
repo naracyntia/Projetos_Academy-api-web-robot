@@ -1,3 +1,4 @@
+import unicodedata
 from faker import Faker
 import random
 
@@ -31,6 +32,17 @@ def limpar_zipCode(zipCode):
     zipCode_limpo = zipCode.replace('.', '').replace('-', '').replace('/', '')
     return zipCode_limpo
 
+def limpar_country(country):
+    # Remove acentos
+    country_sem_acentos = unicodedata.normalize('NFKD', country).encode('ASCII', 'ignore').decode('utf-8')
+    country_limpo = ' '.join(country_sem_acentos.split())
+    # Verifica se é uma única palavra (sem espaços)
+    if ' ' in country_limpo:
+        return None  # ou '' ou lance uma exceção, se preferir
+    # Remove qualquer caractere que não seja letra
+    country_formatado = re.sub(r'[^a-zA-Z]', '', country_limpo).lower()
+    return country_formatado
+
 def gerar_telefone_sem_formatacao():
     return faker.msisdn()
 
@@ -46,9 +58,9 @@ def get_fake_company():
         "district": faker.street_name(),
         "street": faker.street_name(),
         "number": faker.building_number(),
-        "country": faker.city(),
+        "country": faker.country(),
         "descricao": faker.job(),
-        "responsavel": faker.first_name(), 
+        "responsavel": faker.name(), 
     }
     return company
 
@@ -66,18 +78,5 @@ def get_fake_board():
 
 
 
-
-
-
-#company = get_fake_company();
-# print(company["email"]);
-# print(company["cnpj"]);
-# print(company["telefone"]);
-# print(company["zipCode"]);
-#print(company["descricao"]);
-#print(company["responsavel"]);
-# address = get_fake_address();
-# print(address["city"]);
-# print(address["zipCode"]);
 
 

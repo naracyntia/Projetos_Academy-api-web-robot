@@ -44,10 +44,10 @@ Create User
     ${body}        Create Dictionary
     ...    fullName=${person}[name]    
     ...    mail=${person}[email]
-    ...    password=1234@Test
+    ...    password=${Login["PASSWORD"]}
     ...    accessProfile=ADMIN
     ...    cpf=${person}[cpf]
-    ...    confirmPassword=1234@Test
+    ...    confirmPassword=${Login["PASSWORD"]}
     ${resposta}         POST On Session    alias=APISwagger    url=user/?token=${token}    json=${body}
     Status Should Be    201    ${resposta}
     RETURN                     ${resposta.json()["user"]["_id"]}
