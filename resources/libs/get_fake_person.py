@@ -1,3 +1,4 @@
+import re
 import unicodedata
 from faker import Faker
 import random
@@ -18,6 +19,7 @@ def limpar_ponto_nome(nome):
     # Remove apenas o ponto
     nome_limpo = nome.replace('.', '')
     return nome_limpo
+
 # Remove pontos e traços de uma string de CPF.
 def limpar_cpf(cpf):
     # Remove pontos e traços
@@ -60,7 +62,7 @@ def get_fake_company():
         "number": faker.building_number(),
         "country": faker.country(),
         "descricao": faker.job(),
-        "responsavel": faker.name(), 
+        "responsavel": limpar_ponto_nome(faker.name()), 
     }
     return company
 
@@ -75,8 +77,3 @@ def get_fake_board():
     ]
     letras = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ', k=3))
     return f"{random.choice(nome_diretoria)} {letras}"
-
-
-
-
-

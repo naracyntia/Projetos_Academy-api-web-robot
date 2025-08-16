@@ -6,8 +6,8 @@ Library      RequestsLibrary
 Library      String
 Library      Collections
 Library      OperatingSystem
-Library      libs/get_fake_person.py
 Library      ../tests/get_config.py
+Library      ../resources/libs/get_fake_person.py
 
 
 Variables     ../fixtures/data.yaml
@@ -28,8 +28,8 @@ Criar Sessao
 
 Pegar Token
     ${body}    Create Dictionary    
-    ...    mail=${Login["USER"]}    
-    ...    password=${Login["PASSWORD"]}
+    ...    mail=${Login.USER}
+    ...    password=${Login.PASSWORD}
     Log    ${body}
     Criar Sessao
     ${resposta}                POST On Session    alias=APISwagger    url=login/    json=${body}   
@@ -80,7 +80,7 @@ Create Company
     ...    serviceDescription=${Company}[descricao]
     ...    address=${address}
     
-    # Log To Console      Criando empresa com dados:   ${bodyCia}
+   
     ${resposta}         POST On Session              alias=APISwagger    url=company/?token=${token}      json=${bodyCia}
     RETURN              ${resposta.json()["newCompany"]["_id"]}
     log to Console      ${resposta.json()}

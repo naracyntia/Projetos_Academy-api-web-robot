@@ -26,30 +26,30 @@ Count Company
     RETURN             ${resposta.json()}
 
 Get Company    
-    [Arguments]        ${id_company}
+    [Arguments]        ${company_ID}
     ${token}           Pegar Token
-    ${resposta}        GET On Session     alias=APISwagger    url=company/${id_company}?token=${token}
+    ${resposta}        GET On Session     alias=APISwagger    url=company/${company_ID}?token=${token}
     Log                ${resposta.json()["_id"]}
 
 
 Delete Company
-    [Arguments]          ${id_company}
+    [Arguments]          ${company_ID}
     ${token}             Pegar Token
-    DELETE On Session    alias=APISwagger    url=company/${id_company}?token=${token}
+    DELETE On Session    alias=APISwagger    url=company/${company_ID}?token=${token}
 
 
 Put Status
-    [Arguments]         ${id_company}           ${status}
+    [Arguments]         ${company_ID}           ${status}
     ${token}            Pegar Token
     ${body}             Create Dictionary    status=${status}
-    ${resposta}         PUT On Session       alias=APISwagger     url=company/status/${id_company}?token=${token}    json=${body}
+    ${resposta}         PUT On Session       alias=APISwagger     url=company/status/${company_ID}?token=${token}    json=${body}
     RETURN              ${resposta.json()}
 
 
 Cadastro Sucesso
-    ${id_company}       Create Company
-    Get Company         ${id_company}
-    Delete Company      id_company=${id_company}
+    ${company_ID}       Create Company
+    Get Company         ${company_ID}
+    Delete Company      id_company=${company_ID}
 
 
 Editar Company
@@ -78,7 +78,7 @@ Editar Company
     ...    address=${address}
 
 
-    ${resposta}           PUT On Session    alias=APISwagger    url=company/address/67093a62eed30dc911c4f077?token=${token}    json=${body}
+    ${resposta}           PUT On Session    alias=APISwagger    url=company/address/${company_ID}?token=${token}    json=${body}
     log to Console        ${resposta.json()}
     RETURN                ${resposta.json()}
     
@@ -113,9 +113,9 @@ Cadastar empresa campo cnpj vazio
     RETURN               ${RESPOSTA} 
 
 Validar Id inesistente   
-    [Arguments]          ${id_company}
+    [Arguments]          ${company_ID}
     ${token}             Pegar Token
-    ${resposta}          GET On Session         alias=APISwagger    url=company/66fdeaa4eed30dc911c018e9?token=${token}    expected_status=400
+    ${resposta}          GET On Session         alias=APISwagger    url=company/${company_ID}?token=${token}    expected_status=400
     Set Test Variable    ${RESPOSTA}            ${resposta.json()}
     RETURN               ${RESPOSTA}
 

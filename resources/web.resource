@@ -7,8 +7,7 @@ Library      String
 Library      libs/get_fake_person.py
 
 Variables    ../fixtures/data.yaml
-Variables    ../fixtures/ron_url.yaml
-Variables    ../fixtures/thementalists_url.yaml
+Variables    ../fixtures/env.yaml
 
 Resource     keywords.resource
 Resource     users.resource
@@ -19,9 +18,10 @@ Resource     ../pages/pages_web.resource
 
 
 Abrir navegador
-    Open Browser    browser=headlesschrome
-    Maximize Browser Window
-
+    # Open    Browser    browser=headlesschrome
+    # Maximize    Browser Window
+    Open    Application    url=${env['ERPFront']}    browser=headlesschrome
+    Maximize    Browser Window
 
 Passo 1 - acessar a página de login Qa.Coders Academy
     Go To      url=${env['ERPFront']} 
@@ -216,5 +216,5 @@ Passo 7 - clicar em pesquisar
 
 
 
-# Fechar navegador
-#     Close Browser      
+Fechar navegador
+     Close Browser      
