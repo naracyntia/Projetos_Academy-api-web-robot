@@ -1,6 +1,7 @@
 *** Settings ***
 
 Library      Selenium2Library
+Library      SeleniumLibrary
 Library      RequestsLibrary
 Library      XML
 Library      String
@@ -16,24 +17,22 @@ Resource     ../pages/pages_web.resource
 
 *** Keywords ***
 
-
 Abrir navegador
-    # Open    Browser    browser=headlesschrome
-    # Maximize    Browser Window
-    Open    Application    url=${env['ERPFront']}    browser=headlesschrome
-    Maximize    Browser Window
+    Open Browser    url=${environments["${env}"]["ERPFront"]}    browser=headlesschrome
+    Maximize Browser Window
+    Set Selenium Implicit Wait    10s
 
 Passo 1 - acessar a página de login Qa.Coders Academy
-    Go To      url=${env['ERPFront']} 
+    Go To      url=${environments["${env}"]['ERPFront']} 
 
 
 Passo 2 – digitar e-mail
     Wait Until Element Is Visible       ${emaillogin} 
-    Input Text                          ${emaillogin}                ${USER}
+    Input Text                          ${emaillogin}                ${Login.USER}
 
 Passo 3 – digitar senha
     Wait Until Element Is Visible       ${senhaInput}
-    Input Password                      ${senhaInput}                ${PASSWORD}
+    Input Password                      ${senhaInput}                ${Login.PASSWORD}
 
 Passo 4 – clicar no botão entrar
     Wait Until Element Is Visible       ${buttonEntrar}
@@ -75,11 +74,11 @@ Passo 11 - digitar cpf
 
 Passo 12 – digitar senha
     Wait Until Element Is Visible       ${senhaInput}
-    Input Password                      ${senhaInput}                 ${PASSWORD}
+    Input Password                      ${senhaInput}                 ${Login.PASSWORD}
 
 Passo 13 – confirmar senha
     Wait Until Element Is Visible       ${confirmesenhaInput}
-    Input Password                      ${confirmesenhaInput}         ${PASSWORD}
+    Input Password                      ${confirmesenhaInput}         ${Login.PASSWORD}
 
 Passo 14 – clicar no botão salvar
     Wait Until Element Is Visible       ${buttonsalvarnovo}
@@ -212,8 +211,6 @@ Passo 10 – clicar no botão salvar alteração
 Passo 7 - clicar em pesquisar
     Wait Until Element Is Visible       ${campopesquisar}
     Input Text                          ${campopesquisar}             ADMIN
-
-
 
 
 Fechar navegador

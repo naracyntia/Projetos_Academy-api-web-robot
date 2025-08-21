@@ -10,4 +10,5 @@ logs/log.html
 result
 /venv
 .venv/
-
+./logs
+logs/
